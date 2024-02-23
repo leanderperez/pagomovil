@@ -47,7 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Transacciones::class, mappedBy: 'user')]
     private Collection $pago;
 
-    public function __construct($id=null, $username=null, $password=null, $phone=null, $identification_number=null, $balance=null)
+    public function __construct($id=null, $username=null, $password=null, $phone=null, $identification_number=null, $balance=0.00)
     {
         
         $this->id = $id;
