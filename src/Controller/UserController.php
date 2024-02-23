@@ -15,9 +15,9 @@ class UserController extends AbstractController
     public function userRegister(Request $request): Response
     {
         $user = new User();
-        $register_form = $this->createForm(UserType, $user);
+        $register_form = $this->createForm(UserType::class, $user);
         return $this->render('user/index.html.twig', [
-            'register_form' => register_form->createView(),
+            'register_form' => $register_form->createView(),
         ]);
     }
 }

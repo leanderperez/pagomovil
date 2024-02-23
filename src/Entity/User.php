@@ -47,12 +47,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Transacciones::class, mappedBy: 'user')]
     private Collection $pago;
 
-    public function __construct($id=null, $username=null, $roles=null, $password=null, $phone=null, $identification_number=null, $balance=null)
+    public function __construct($id=null, $username=null, $password=null, $phone=null, $identification_number=null, $balance=null)
     {
         
         $this->id = $id;
         $this->username = $username;
-        #$this->roles = $roles;
         $this->password = $password;
         $this->phone = $phone;
         $this->identification_number = $identification_number;
