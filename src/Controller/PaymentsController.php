@@ -18,6 +18,10 @@ class PaymentsController extends AbstractController
     #[Route('/payments', name: 'app_payments')]
     public function app_payments(Request $request, EntityManagerInterface $em): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $user = $this->getUser(); // Obtener el usuario actual
         $form = $this->createForm(PaymentsType::class);
         $form->handleRequest($request);
@@ -52,6 +56,7 @@ class PaymentsController extends AbstractController
             $em->persist($user);
             $em->persist($transaccion);
             $em->flush();
+            return $this->redirectToRoute('app_dashboard');
 
         }
 
