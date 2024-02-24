@@ -23,9 +23,6 @@ class Transacciones
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $monto = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $hora = null;
-
     #[ORM\ManyToOne(inversedBy: 'pago')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
@@ -67,18 +64,6 @@ class Transacciones
     public function setMonto(string $monto): static
     {
         $this->monto = $monto;
-
-        return $this;
-    }
-
-    public function getHora(): ?\DateTimeInterface
-    {
-        return $this->hora;
-    }
-
-    public function setHora(\DateTimeInterface $hora): static
-    {
-        $this->hora = $hora;
 
         return $this;
     }

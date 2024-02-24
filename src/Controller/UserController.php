@@ -14,9 +14,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserController extends AbstractController
 {
 
-    public function __construct(EntityManagerInterface $en)
+    public function __construct(EntityManagerInterface $em)
     {
-        $this->en = $en;
+        $this->em = $em;
     }
 
 
@@ -36,9 +36,9 @@ class UserController extends AbstractController
             $user->setPassword($hashedPassword);
             
             $user->setRoles(['ROLE_USER']);
-            $this->en->persist($user);
-            $this->en->flush();
-            return $this->redirectToRoute('userRegister');
+            $this->em->persist($user);
+            $this->em->flush();
+            return $this->redirectToRoute('app_payments');
         }
         return $this->render('user/index.html.twig', [
             'register_form' => $register_form->createView(),
